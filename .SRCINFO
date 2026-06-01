@@ -1,0 +1,22 @@
+pkgbase = proton-moleman
+	pkgdesc = proton-cachyos with valve's bleeding-edge changes applied regularly
+	pkgver = 11.0.20260521
+	pkgrel = 1
+	url = https://github.com/CachyOS/proton-cachyos
+	arch = x86_64
+	arch = x86_64_v3
+	license = custom
+	makedepends = git
+	makedepends = ccache
+	provides = proton
+	options = ccache
+	options = pestrip
+	options = lto
+	options = !buildflags
+	options = !staticlibs
+	options = !emptydirs
+	options = !debug
+	source = git+https://github.com/CachyOS/proton-cachyos.git#tag=cachyos-11.0-20260521-slr
+	sha256sums = 0aadc763ae826cc2455c630654ae9f8ae89bdf5d1f848a0c5c1a4ccb94b5a4ee
+
+pkgname = proton-moleman

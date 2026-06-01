@@ -7,7 +7,7 @@ pkgdesc="proton-cachyos with valve's bleeding-edge changes applied regularly"
 url="https://github.com/CachyOS/proton-cachyos"
 arch=(x86_64 x86_64_v3)
 license=('custom')
-makedepends=(git ccache coreutils)
+makedepends=(git ccache)
 provides=(proton)
 options=(ccache pestrip lto !buildflags !staticlibs !emptydirs !debug)
 source=("git+https://github.com/CachyOS/proton-cachyos.git#tag=cachyos-${_srctag}-slr")
