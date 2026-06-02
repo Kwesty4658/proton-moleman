@@ -20,7 +20,7 @@ _vkd3dcommit='e02b9b1'
 prepare() {
     [ ! -d build ] && mkdir build
     cd proton-cachyos
- 
+
     git submodule update --init --recursive --jobs $(nproc)
 
     echo 'checking out FEX'          ; cd FEX               ; git checkout main             ; cd ..
@@ -41,7 +41,7 @@ prepare() {
     }
 }
 
-build() { 
+build() {
     cd build
     ../proton-cachyos/configure.sh  \
         --build-name="${pkgname}"   \
