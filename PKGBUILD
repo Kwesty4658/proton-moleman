@@ -36,7 +36,9 @@ prepare() {
 
     git remote remove valve 2>/dev/null || true
     git remote add valve https://github.com/ValveSoftware/wine && git fetch valve bleeding-edge
-    git rebase --reapply-cherry-picks valve/bleeding-edge -X theirs || { git rebase --skip }
+    git rebase --reapply-cherry-picks valve/bleeding-edge -X theirs || {
+        git rebase --skip
+    }
 }
 
 build() { 
