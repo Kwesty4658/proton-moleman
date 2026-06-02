@@ -1,16 +1,16 @@
 # Maintainer: Conor Power <conor-power@themolehole.org>
 pkgname='proton-moleman'
+pkgdesc="proton-cachyos with valve's bleeding-edge changes applied"
+url="https://github.com/CachyOS/proton-cachyos.git"
+pkgrel=1
 _srctag=11.0-20260521
 pkgver=${_srctag//-/.}
-pkgrel=1
-pkgdesc="proton-cachyos with valve's bleeding-edge changes applied"
-url="https://github.com/CachyOS/proton-cachyos"
 arch=(x86_64 x86_64_v3)
 license=('custom')
 makedepends=(git ccache)
 provides=(proton)
 options=(ccache pestrip lto !buildflags !staticlibs !emptydirs !debug)
-source=("git+https://github.com/CachyOS/proton-cachyos.git#tag=cachyos-${_srctag}-slr")
+source=("git+${url}#tag=cachyos-${_srctag}-slr")
 
 _vkd3dcommit='f6f22e5'
 
