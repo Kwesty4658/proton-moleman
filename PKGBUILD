@@ -1,10 +1,10 @@
 # Maintainer: Conor Power <conor-power@themolehole.org>
-pkgname="proton-moleman-git"
+pkgname="proton-moleman"
 pkgdesc="proton-cachyos with valve's bleeding-edge changes applied"
 url="https://github.com/CachyOS/proton-cachyos.git"
 license=('custom')
 arch=(x86_64 x86_64_v3)
-pkgrel=2
+pkgrel=1
 _srctag=11.0-20260521
 pkgver=${_srctag//-/.}
 makedepends=(git ccache podman)
