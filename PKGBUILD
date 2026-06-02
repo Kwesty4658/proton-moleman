@@ -3,7 +3,7 @@ pkgname='proton-moleman'
 _srctag=11.0-20260521
 pkgver=${_srctag//-/.}
 pkgrel=1
-pkgdesc="proton-cachyos with valve's bleeding-edge changes applied regularly"
+pkgdesc="proton-cachyos with valve's bleeding-edge changes applied"
 url="https://github.com/CachyOS/proton-cachyos"
 arch=(x86_64 x86_64_v3)
 license=('custom')
@@ -45,6 +45,7 @@ build() {
     ../proton-cachyos/configure.sh  \
         --build-name="${pkgname}"   \
         --enable-ccache             \
+        --enable-wow64              \
         --without-tts               \
         --without-libpcap           \
         --without-sarek             \
