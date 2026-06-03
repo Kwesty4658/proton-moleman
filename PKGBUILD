@@ -41,7 +41,6 @@ build() {
     ../proton-cachyos/configure.sh  \
         --build-name="$pkgname"     \
         --enable-ccache             \
-        --enable-wow64              \
         --without-tts               \
         --without-libpcap           \
         --without-sarek             \
