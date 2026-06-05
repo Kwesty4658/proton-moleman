@@ -12,7 +12,7 @@ provides=(proton)
 options=(ccache pestrip lto !buildflags !staticlibs !emptydirs !debug)
 source=("git+$url#tag=cachyos-$_srctag-slr")
 
-_vkd3dcommit='e02b9b1'
+_vkd3dcommit='8f545d4'
 
 prepare() {
     [ ! -d build ] && mkdir build
