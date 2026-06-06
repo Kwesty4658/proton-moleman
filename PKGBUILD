@@ -4,15 +4,20 @@ pkgdesc="proton-cachyos with valve's bleeding-edge changes applied"
 url="https://github.com/CachyOS/proton-cachyos.git"
 license=('custom')
 arch=(x86_64 x86_64_v3)
-pkgrel=1
+pkgrel=2
 _srctag=11.0-20260521
-pkgver=${_srctag//-/.}
+pkgver=cachyos.11.0.20260521.slr.r0.g16dba00
 makedepends=(git ccache podman)
 provides=(proton)
 options=(ccache pestrip lto !buildflags !staticlibs !emptydirs !debug)
 source=("git+$url#tag=cachyos-$_srctag-slr")
 
 _vkd3dcommit='8f545d4'
+
+pkgver() {
+    cd proton-cachyos
+    git describe --long --tags --abbrev=7 | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
 
 prepare() {
     [ ! -d build ] && mkdir build
