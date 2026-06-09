@@ -1,7 +1,7 @@
 pkgbase = proton-moleman
-	pkgdesc = proton-cachyos with valve's bleeding-edge changes applied
+	pkgdesc = proton-cachyos built with wow64 and without tts, libpcap, sarek, and d7vk
 	pkgver = cachyos.11.0.20260521.slr.r0.g16dba00
-	pkgrel = 2
+	pkgrel = 3
 	url = https://github.com/CachyOS/proton-cachyos.git
 	arch = x86_64
 	arch = x86_64_v3

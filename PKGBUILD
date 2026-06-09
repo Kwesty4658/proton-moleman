@@ -1,44 +1,22 @@
 # Maintainer: Conor Power <conor-power@themolehole.org>
-pkgname="proton-moleman"
-pkgdesc="proton-cachyos with valve's bleeding-edge changes applied"
-url="https://github.com/CachyOS/proton-cachyos.git"
+pkgname='proton-moleman'
+pkgdesc='proton-cachyos built with wow64 and without tts, libpcap, sarek, and d7vk'
+url='https://github.com/CachyOS/proton-cachyos.git'
 license=('custom')
 arch=(x86_64 x86_64_v3)
-pkgrel=1
-_srctag=11.0-20260521-slr
+pkgrel=3
 pkgver=cachyos.11.0.20260521.slr.r0.g16dba00
 makedepends=(git ccache podman)
 provides=(proton)
 options=(ccache pestrip lto !buildflags !staticlibs !emptydirs !debug)
-source=("git+$url#tag=cachyos-$_srctag")
-
-_vkd3dcommit='8f545d4'
-
-pkgver() {
-    cd proton-cachyos
-    git describe --long --tags --abbrev=7 | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
-}
+_srctag='cachyos-11.0-20260521-slr'
+source=("git+$url#tag=$_srctag")
+sha256sums=('0aadc763ae826cc2455c630654ae9f8ae89bdf5d1f848a0c5c1a4ccb94b5a4ee')
 
 prepare() {
     [ ! -d build ] && mkdir build
     cd proton-cachyos
-
     git submodule update --init --recursive --jobs $(nproc)
-
-    cd FEX               && git checkout main          && cd ..
-    cd dxvk              && git checkout master        && cd ..
-    cd dxvk-nvapi        && git checkout master        && cd ..
-    cd vkd3d-proton      && git checkout master        && cd ..
-    cd vkd3d ; git fetch && git checkout $_vkd3dcommit && cd ..
-
-    cd wine
-    git config user.email "pkgbuild@local" && git config user.name "john pkgbuild" && git config set advice.mergeConflict false
-
-    git remote remove valve 2>/dev/null || true
-    git remote add valve https://github.com/ValveSoftware/wine && git fetch valve bleeding-edge
-    git rebase --reapply-cherry-picks valve/bleeding-edge -X theirs || {
-        git rebase --skip
-    }
 }
 
 build() {
@@ -46,6 +24,7 @@ build() {
     ../proton-cachyos/configure.sh  \
         --build-name="$pkgname"     \
         --enable-ccache             \
+        --enable-wow64              \
         --without-tts               \
         --without-libpcap           \
         --without-sarek             \
@@ -64,10 +43,13 @@ package() {
     # Install Proton
     mkdir -p "$_compat/$pkgname"
     rsync --delete -arx dist/* "$_compat/$pkgname"
-
     # Install Licenses
     mkdir -p "$pkgdir/usr/share/licenses/$pkgname"
     mv "$_compat/$pkgname"/{PATENTS.AV1,LICENSE{,.OFL}} \
         "$pkgdir/usr/share/licenses/$pkgname"
 }
-sha256sums=('0aadc763ae826cc2455c630654ae9f8ae89bdf5d1f848a0c5c1a4ccb94b5a4ee')
+
+pkgver() {
+    cd proton-cachyos
+    git describe --long --tags --abbrev=7 | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
